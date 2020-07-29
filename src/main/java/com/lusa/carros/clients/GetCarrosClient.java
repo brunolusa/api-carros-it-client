@@ -33,4 +33,15 @@ public class GetCarrosClient extends BaseApi {
                 statusCode(HttpStatus.SC_OK).
                 contentType(ContentType.JSON);
     }
+    public ValidatableResponse getCarrosNotFound(Long id){
+        return
+            given().
+                spec(spec).
+                pathParam(PARAM_PATH_ID, id).
+            when().
+                get(CARROS_WITH_ID).
+            then().
+                statusCode(HttpStatus.SC_NOT_FOUND).
+                contentType(ContentType.JSON);
+    }
 }
