@@ -4,10 +4,8 @@ import com.lusa.carros.utils.BaseApi;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
-
 import static com.lusa.carros.utils.StaticValues.*;
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 
 public class GetCarrosClient extends BaseApi {
 
