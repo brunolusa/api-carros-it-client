@@ -41,7 +41,6 @@ public class GetCarrosClient extends BaseApi {
             when().
                 get(CARROS_WITH_ID).
             then().
-                statusCode(HttpStatus.SC_NOT_FOUND).
-                contentType(ContentType.JSON);
+                statusCode(HttpStatus.SC_NOT_FOUND);
     }
 }
