@@ -8,7 +8,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 public class PropertyLoader {
-    protected static Logger logger;
+    private static final Logger LOGGER = Logger.getLogger(PropertyLoader.class.getName());
     private PropertyLoader() {}
 
     public static String retornarValorArquivoConfiguracao(final String propriedade) {
@@ -18,11 +18,11 @@ public class PropertyLoader {
                 .getResourceAsStream("conf/config.properties")) {
 
             properties.load(propFileInpStream);
-            logger.info(MessageFormat.format("Localizado a propriedade: {0} no arquivo conf/config.properties com o valor {1}", propriedade, properties.getProperty(propriedade)));
+            LOGGER.info(MessageFormat.format("Localizado a propriedade: {0} no arquivo conf/config.properties com o valor {1}", propriedade, properties.getProperty(propriedade)));
 
             return properties.getProperty(propriedade);
         } catch (IOException e) {
-            logger.warning(MessageFormat.format("Propriedade {0} não foi encontrada nos arquivos de configuração", propriedade));
+            LOGGER.warning(MessageFormat.format("Propriedade {0} não foi encontrada nos arquivos de configuração", propriedade));
             throw new NoPropertiesException("Sem arquivo de configuração!");
         }
     }
