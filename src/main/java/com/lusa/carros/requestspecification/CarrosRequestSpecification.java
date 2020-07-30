@@ -12,11 +12,11 @@ import static com.lusa.carros.utils.StaticValues.ACTUATOR;
 
 public class CarrosRequestSpecification {
 
-    private String BASEURI = retornarValorArquivoConfiguracao("baseUri");
-    private String PORT = retornarValorArquivoConfiguracao("port");
-    private String BASEPATH = retornarValorArquivoConfiguracao("basePath");
+    private static String BASEURI = retornarValorArquivoConfiguracao("baseUri");
+    private static String PORT = retornarValorArquivoConfiguracao("port");
+    private static String BASEPATH = retornarValorArquivoConfiguracao("basePath");
 
-    public RequestSpecification getRequestSpecification() {
+    public static RequestSpecification getRequestSpecification() {
         return new RequestSpecBuilder()
                 .setConfig(
                         new RestAssuredConfig()
@@ -33,7 +33,7 @@ public class CarrosRequestSpecification {
                 .build();
     }
 
-    public RequestSpecification getRequestSpecificationActuator() {
+    public static RequestSpecification getRequestSpecificationActuator() {
         return new RequestSpecBuilder()
                 .setConfig(
                         new RestAssuredConfig()
