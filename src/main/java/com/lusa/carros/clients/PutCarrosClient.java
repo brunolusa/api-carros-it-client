@@ -19,7 +19,7 @@ public class PutCarrosClient  {
             when().
                 put(CARROS_WITH_ID).
             then().
-                statusCode(HttpStatus.SC_OK).
+                statusCode(HttpStatus.SC_ACCEPTED).
                 contentType(ContentType.JSON);
     }
 }
