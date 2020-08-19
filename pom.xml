@@ -21,12 +21,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.0.0</version>
-        </dependency>
     </dependencies>
 
     <build>
