@@ -13,9 +13,10 @@ public class PropertyLoader {
 
     public static String retornarValorArquivoConfiguracao(final String propriedade) {
         Properties properties = new Properties();
+        String env = Env.getEnv();
 
         try (InputStream propFileInpStream = PropertyLoader.class.getClassLoader()
-                .getResourceAsStream("conf/config.properties")) {
+                .getResourceAsStream("conf/"+env+"/config.properties")) {
 
             properties.load(propFileInpStream);
             LOGGER.info(MessageFormat.format("Localizado a propriedade: {0} no arquivo conf/config.properties com o valor {1}", propriedade, properties.getProperty(propriedade)));

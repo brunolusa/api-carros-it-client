@@ -6,7 +6,7 @@
 
     <groupId>com.lusa</groupId>
     <artifactId>api-carros-it-client</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <dependencies>
         <!--Rest-Assured-->
@@ -20,6 +20,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.0.0</version>
         </dependency>
     </dependencies>
 
