@@ -9,6 +9,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import static com.lusa.carros.utils.PropertyLoader.retornarValorArquivoConfiguracao;
 import static com.lusa.carros.utils.StaticValues.ACTUATOR;
+import static com.lusa.carros.utils.StaticValues.OAUTHTOKEN;
 
 public class CarrosRequestSpecification {
 
@@ -45,6 +46,23 @@ public class CarrosRequestSpecification {
                 .setBaseUri(BASEURI)
                 .setPort(Integer.parseInt(PORT))
                 .setBasePath(ACTUATOR)
+                .log(LogDetail.ALL)
+                .addFilter(new ResponseLoggingFilter())
+                .build();
+    }
+
+    public static RequestSpecification getRequestSpecificationOauthToken() {
+        return new RequestSpecBuilder()
+                .setConfig(
+                        new RestAssuredConfig()
+                                .sslConfig(
+                                        new SSLConfig().relaxedHTTPSValidation()
+                                )
+                )
+                .setContentType(ContentType.JSON)
+                .setBaseUri(BASEURI)
+                .setPort(Integer.parseInt(PORT))
+                .setBasePath(OAUTHTOKEN)
                 .log(LogDetail.ALL)
                 .addFilter(new ResponseLoggingFilter())
                 .build();

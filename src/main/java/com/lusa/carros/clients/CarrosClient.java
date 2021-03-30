@@ -5,8 +5,8 @@ import com.lusa.carros.utils.Env;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
-import static com.lusa.carros.requestspecification.CarrosRequestSpecification.getRequestSpecification;
-import static com.lusa.carros.requestspecification.CarrosRequestSpecification.getRequestSpecificationActuator;
+
+import static com.lusa.carros.requestspecification.CarrosRequestSpecification.*;
 import static com.lusa.carros.utils.StaticValues.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
@@ -51,9 +51,10 @@ public class CarrosClient {
                 body("status",is("UP"));
     }
 
-    public ValidatableResponse getAllCarros(){
+    public ValidatableResponse getAllCarros(String accessToken){
         return
             given().
+                header("Authorization", "Bearer " + accessToken).
                 spec(getRequestSpecification()).
             when().
                 get(CARROS).
@@ -107,5 +108,25 @@ public class CarrosClient {
             then().
                 statusCode(HttpStatus.SC_ACCEPTED).
                 contentType(ContentType.JSON);
+    }
+
+    public String getTokenAuthentication(String user, String pass, String clientUser, String clientPass){
+        return
+            given().
+                spec(getRequestSpecificationOauthToken()).
+                auth().
+                    preemptive().
+                        basic(clientUser,clientPass).
+                contentType("application/x-www-form-urlencoded").
+                formParam("grant_type", "password").
+                formParam("username", user).
+                formParam("password", pass).
+            when().
+                post().
+            then().
+                statusCode(HttpStatus.SC_OK).
+                extract().
+                    body().
+                        path("access_token");
     }
 }
